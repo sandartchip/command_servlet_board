@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>수정 페이지</title>
+<title>HELLO</title>
 </head>
 <body>
-
+	안녕하세요
+	<%=  request.getAttribute("hello") %>
 </body>
 </html>

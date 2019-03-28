@@ -1,14 +1,14 @@
-package servlet;
+package mvc.command;
 
 import java.io.IOException;
-import java.sql.Statement;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,27 +16,25 @@ import javax.servlet.http.HttpServletResponse;
 import com.board.dao.BoardDAO;
 
 /**
- * Servlet implementation class DeleteServlet
+ * Servlet implementation class DeleteHandler
  */
-//@WebServlet("/DeleteServlet")
-public class DeleteServlet extends HttpServlet {
+@WebServlet("/DeleteHandler")
+public class DeleteHandler extends HttpServlet implements CommandHandler{
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteServlet() {
+    public DeleteHandler() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
+		System.out.println("-------delete-------");
 		String content_id_str = request.getParameter("content_id");
 		System.out.println("content id= "+ content_id_str);
 		
@@ -83,15 +81,15 @@ public class DeleteServlet extends HttpServlet {
 			e.printStackTrace();
 		} 
 		
-		response.sendRedirect("/Servlet_BBS/list");
+
+		String view_url = "/Servlet_BBS/controller?cmd=list";
+//		String view_url = "/Servlet_BBS/controller?cmd=list";
+		//rd = request.getRequestDispatcher(view_url);
+		response.sendRedirect(view_url);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	}
 
 }

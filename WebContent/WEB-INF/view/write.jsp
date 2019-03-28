@@ -3,22 +3,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>글 작성 페이지</title>
 </head>
+<%
+	request.setCharacterEncoding("UTF-8");
+	System.out.println("인코딩 타입="+request.getCharacterEncoding());
+%>
 <body>
-
 <!--  post 방식으로 writeServlet (/write) 로 데이터 넘어감 -->
-	<form action="/Servlet_BBS/write" method="post" onsubmit="return formCheck();">
-	
-		제목: <input type="text" name="title" />
+	<!-- <form action="/Servlet_BBS/write" method="post" onsubmit="return formCheck();"> -->
+	<form action="/Servlet_BBS/controller?cmd=write&goto=data_enroll" method="post" onsubmit="return formCheck();">
+		제목: <input type="text" name="title"/>
 		내용: <input type="text" name="content" style="height:100px" />
 		
 		<input type="submit" value="저장" />	
-	</form>
+	</form> 
 	<script>
 		function formCheck(){
 			var title = document.forms[0].title.value;
+			
 			var content = document.forms[0].content.value;
 			
 			if(title.length==0) 

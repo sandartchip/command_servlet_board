@@ -33,10 +33,7 @@ public class WriteServlet extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+ 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		/* 입력 jsp 페이지 띄우기  */
@@ -50,10 +47,7 @@ public class WriteServlet extends HttpServlet {
 			response.sendRedirect("write.jsp"); //파라미터 없으니까 redirect
 		}
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+ 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	// 저장버튼 클릭 시 게시글 등록 후 list로 이동

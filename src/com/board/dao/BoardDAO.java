@@ -26,7 +26,8 @@ public class BoardDAO { //연결한 DB 객체 리턴!!
 			Class.forName(driverName); 
 			
 			//2. DB 서버 접속
-			String dbUrl = "jdbc:mysql://localhost:3306/boardDB?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+			//String dbUrl = "jdbc:mysql://localhost:3306/boardDB?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+			String dbUrl = "jdbc:mysql://localhost:3306/boarddb2?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 			String dbUser = "root";
 			String dbPassword = "ROOT";
 			

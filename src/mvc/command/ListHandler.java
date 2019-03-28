@@ -1,5 +1,4 @@
-package servlet;
-
+package mvc.command;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,7 +11,6 @@ import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,25 +19,18 @@ import com.board.dao.BoardDAO;
 import com.board.vo.BoardVO;
 
 /**
- * Servlet implementation class TestServlet
+ * Servlet implementation class ListHandler
  */
-//@WebServlet("/listServlet")->web.xml에서.
-public class ListServlet extends HttpServlet {
+//@WebServlet("/ListHandler")
+public class ListHandler extends HttpServlet implements CommandHandler  {
 	private static final long serialVersionUID = 1L;
-	ArrayList<BoardVO> vo_list;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ListServlet() {
-        super();
-        // TODO Auto-generated constructor stub
+	ArrayList<BoardVO> vo_list; 
+    public ListHandler() {
+        super(); 
     }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    
+    @Override
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		response.setContentType("text/html;charset=utf-8");
 		response.getWriter().append("여기서 served!").append(request.getContextPath());
@@ -105,21 +96,31 @@ public class ListServlet extends HttpServlet {
 		
 		String test= "test_string";
 		request.setAttribute("test", test);
-		request.setAttribute("list_item", vo_list);
-		
-		ServletContext context = getServletContext(); //프로젝트 경로가 나온다.  
-		//프로젝트
-		
-		System.out.println("ServletContext = " + context);
+		request.setAttribute("list_item", vo_list); 
 		
 		//RequestDispatcher rd = context.getRequestDispatcher("/view/list.jsp");
 		//프로젝트 경로 + list.jsp (WebContent 안에 있는건 함)
-		RequestDispatcher rd = context.getRequestDispatcher("/list.jsp");
-		rd.forward(request, response);	
+		
+		/*
+		 * ServletContext context = getServletContext(); //프로젝트 경로가 나온다.  
+		//프로젝트
+		
+		System.out.println("ServletContext = " + context);
+
+		 * RequestDispatcher rd = context.getRequestDispatcher("/list.jsp");
+		rd.forward(request, response);*/
+		//String list_url = "/Servlet_BBS/view/list.jsp";
+		//String list_url = "/view/list.jsp";
+		String list_url = "/WEB-INF/view/list.jsp";
+		//RequestDispatcher rd = request.getRequestDispatcher(hello_url);
+		//rd.forward(request, response);
+		RequestDispatcher rd = request.getRequestDispatcher(list_url);
+		rd.forward(request, response);
+		 
 	}
  
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+    @Override
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//doGet(request, response);
 	}
 }
